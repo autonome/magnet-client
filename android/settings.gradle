@@ -1,4 +1,4 @@
-rootProject.name = 'Project Magnet'
+rootProject.name = 'Mozfestation'
 
 include ':app'
 include ':react-native-google-analytics-bridge'

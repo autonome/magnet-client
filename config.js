@@ -7,12 +7,12 @@ module.exports = {
 
   "userFlags": {
     "sortByDistance": {
-      value: false, // default
+      value: true, // default
       title: 'Sort by distance',
     },
 
     "showDistance": {
-      value: false, // default
+      value: true, // default
       title: 'Show distance',
     },
 
@@ -22,7 +22,7 @@ module.exports = {
     },
 
     "enableTelemetry": {
-      value: true, // default
+      value: false, // default
       title: 'Telemetry',
       description: 'Share performance and usage data with Mozilla to help us to improve Project Magnet'
     },
