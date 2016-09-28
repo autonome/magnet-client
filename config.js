@@ -7,7 +7,7 @@ module.exports = {
 
   "userFlags": {
     "sortByDistance": {
-      value: true, // default
+      value: false, // default
       title: 'Sort by distance',
     },
 
