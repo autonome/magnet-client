@@ -85,7 +85,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "org.mozilla.magnet"
+        applicationId "com.metafluff.mozfestation"
         minSdkVersion 18
         targetSdkVersion 22
         versionCode 5
