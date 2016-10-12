@@ -9,7 +9,7 @@ import com.android.build.OutputFile
  * cycle. By default, bundleDebugJsAndAssets is skipped, as in debug/dev mode we prefer to load the
  * bundle directly from the development server. Below you can see all the possible configurations
  * and their defaults. If you decide to add a configuration block, make sure to add it before the
- * `apply from: "react.gradle"` line.
+ * `apply from: "../../node_modules/react-native/react.gradle"` line.
  *
  * project.ext.react = [
  *   // the name of the generated asset file containing your JS bundle
@@ -55,11 +55,17 @@ import com.android.build.OutputFile
  *   // date; if you have any other folders that you want to ignore for performance reasons (gradle
  *   // indexes the entire tree), add them here. Alternatively, if you have JS files in android/
  *   // for example, you might want to remove it from here.
- *   inputExcludes: ["android/**", "ios/**"]
+ *   inputExcludes: ["android/**", "ios/**"],
+ *
+ *   // override which node gets called and with what additional arguments
+ *   nodeExecutableAndArgs: ["node"]
+ *
+ *   // supply additional arguments to the packager
+ *   extraPackagerArgs: []
  * ]
  */
 
-apply from: "react.gradle"
+apply from: "../../node_modules/react-native/react.gradle"
 
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -80,32 +86,16 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
 
-    lintOptions {
-        abortOnError false
-    }
-
     defaultConfig {
-        applicationId "com.metafluff.mozfestation"
-        minSdkVersion 18
+        applicationId "com.mozfestation"
+        minSdkVersion 16
         targetSdkVersion 22
-        versionCode 5
-        versionName "1.1.2"
+        versionCode 1
+        versionName "1.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
     }
-
-    if (RELEASE_STORE_FILE) {
-        signingConfigs {
-            release {
-                storeFile file(RELEASE_STORE_FILE)
-                storePassword RELEASE_STORE_PASSWORD
-                keyAlias RELEASE_KEY_ALIAS
-                keyPassword RELEASE_KEY_PASSWORD
-            }
-        }
-    }
-
     splits {
         abi {
             reset()
@@ -115,18 +105,9 @@ android {
         }
     }
     buildTypes {
-        debug {
-            manifestPlaceholders = [excludeSystemAlertWindowPermission: "false"]
-        }
-
         release {
-            manifestPlaceholders = [excludeSystemAlertWindowPermission: "true"]
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-
-            if (signingConfigs.contains(release)) {
-                signingConfig signingConfigs.release
-            }
         }
     }
     // applicationVariants are e.g. debug, release
@@ -145,18 +126,14 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-google-analytics-bridge')
-    compile project(':react-native-linear-gradient')
-    compile project(':magnet-scanner-android')
-    compile fileTree(dir: "libs", include: ["*.jar", "*.aar"])
+    compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
-    compile group: 'net.jodah', name: 'expiringmap', version: '0.3.1'
 }
 
 // Run this once to be able to run the application with BUCK
 // puts all compile dependencies into folder libs for BUCK to use
 task copyDownloadableDepsToLibs(type: Copy) {
-    from configurations.compile
-    into 'libs'
+  from configurations.compile
+  into 'libs'
 }
