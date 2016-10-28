@@ -140,7 +140,11 @@ data.forEach(function(row) {
   tmpl = tmpl.replace(/\{detailURL\}/g, row[4]);
   tmpl = tmpl.replace(/\{description\}/g, 'asfd');
   tmpl = tmpl.replace(/\{headerImageURL\}/g, 'images/detail_header_image.png');
-  tmpl = tmpl.replace(/\{imageURL\}/g, 'http://i.imgur.com/jFy7vOF.png');
+
+  if (spaceImages[ row[1] ])
+    tmpl = tmpl.replace(/\{imageURL\}/g, spaceImages[ row[1] ]);
+  else
+    tmpl = tmpl.replace(/\{imageURL\}/g, 'http://i.imgur.com/jFy7vOF.png');
 
   write('beacon' + row[0] + '.html', tmpl);
   console.log('wrote', row[0]);
