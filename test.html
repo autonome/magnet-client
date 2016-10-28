@@ -86,9 +86,12 @@
 <script>
 
 
-  var ua = navigator.userAgent.toLowerCase();
+  var ua = navigator.userAgent.toLowerCase(),
+      androidURL = 'https://play.google.com/store/apps/details?id=com.metafluff.mozfestation&hl=en',
+      iosURL = '';
+
   if (ua.toLowerCase().indexOf("android") > -1) {
-    window.location.href = 'http://play.google.com/store/apps/details?id=com.truecaller&hl=en';
+    window.location.href = androidURL;
   }
 /*
   if (ua.toLowerCase().indexOf("iphone") > -1 || ua.indexOf("iPod") > -1 || ua.indexOf("iPad") > -1) {
