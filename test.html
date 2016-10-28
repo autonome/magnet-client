@@ -85,23 +85,22 @@
 <body>
 <script>
 
-  /*
-  $(document).ready(function () {
 
-    if (navigator.userAgent.toLowerCase().indexOf("android") > -1) {
-      window.location.href = 'http://play.google.com/store/apps/details?id=com.truecaller&hl=en';
-    }
-    if (navigator.userAgent.toLowerCase().indexOf("iphone") > -1) {
-      window.location.href = 'http://itunes.apple.com/lb/app/truecaller-caller-id-number/id448142450?mt=8';
-    }
-
-  });
+  var ua = navigator.userAgent.toLowerCase();
+  if (ua.toLowerCase().indexOf("android") > -1) {
+    window.location.href = 'http://play.google.com/store/apps/details?id=com.truecaller&hl=en';
+  }
+/*
+  if (ua.toLowerCase().indexOf("iphone") > -1 || ua.indexOf("iPod") > -1 || ua.indexOf("iPad") > -1) {
+    window.location.href = 'http://itunes.apple.com/lb/app/truecaller-caller-id-number/id448142450?mt=8';
+  }
   */
 
-  if (/Android/.test(userAgentString)) {
+
+  /*
+  if (/Android/.test(navigator.userAgent)) {
    link.attr("href", "https://play.google.com/store/apps/details?id=com.metafluff.mozfestation&hl=en");
   }
-  /*
   else if (userAgentString.indexOf("iPhone") > -1
       || userAgentString.indexOf("iPod") > -1
       || userAgentString.indexOf("iPad") > -1) {
