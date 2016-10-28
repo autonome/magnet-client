@@ -85,48 +85,42 @@
 <body>
 <script>
 
-
   var ua = navigator.userAgent.toLowerCase(),
       androidURL = 'https://play.google.com/store/apps/details?id=com.metafluff.mozfestation&hl=en',
-      iosURL = 'http://itunes.apple.com/lb/app/truecaller-caller-id-number/id448142450?mt=8';
+      iosURL = 'https://itunes.apple.com/us/app/mozfestation/id1160000204?ls=1&mt=8';
 
-  if (ua.toLowerCase().indexOf("android") > -1) {
+  if (ua.toLowerCase().indexOf('android') > -1) {
     window.location.href = androidURL;
   }
+  /*
   if (ua.toLowerCase().indexOf("iphone") > -1 || ua.indexOf("iPod") > -1 || ua.indexOf("iPad") > -1) {
     window.location.href = iosURL;
-  }
-
-
-  /*
-  if (/Android/.test(navigator.userAgent)) {
-   link.attr("href", "https://play.google.com/store/apps/details?id=com.metafluff.mozfestation&hl=en");
-  }
-  else if (userAgentString.indexOf("iPhone") > -1
-      || userAgentString.indexOf("iPod") > -1
-      || userAgentString.indexOf("iPad") > -1) {
-   link.attr("href", "https://itunes.apple.com/us/app/mozfestation/id1160000204?ls=1&mt=8");
   }
   */
 
 </script>
 
 <div class="header">
-  <img class="header" src="{headerImageURL}">
+  <img class="header" src="images/detail_header_image.png">
 </div>
 
-<!--h4>You've been infected by Beacon #XXX</h4-->
+<h1>GET INFECTED... BY IDEAS!</h1>
 
-<img src="{imageURL}">
+<!--
+<p>IOS APP COMING SOON</p>
+-->
 
-<h1>{title}</h1>
+<p>
+  <a href='https://play.google.com/store/apps/details?id=com.metafluff.mozfestation&hl=en&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
+</p>
 
-<p>{description}</p>
+<p>
+  <a href="https://itunes.apple.com/us/app/mozfestation/id1160000204?mt=8" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/images/badges/en-us/badge_appstore-lrg.svg) no-repeat;width:165px;height:40px;"></a>
+</p>
 
+<!--
 <p class="additional"><a href="{detailURL}">Read more</a></p>
-
-
-
+-->
 
 </body>
 </html>
