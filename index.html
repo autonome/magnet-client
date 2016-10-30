@@ -228,8 +228,11 @@
 
     function buildBeaconLeaderboard(data) {
       var board = document.querySelector('.beacons');
+      var keys = Object.keys(data[0]);
+      var k1 = keys[0];
+      var k2 = keys[1];
       data.forEach(function(beacon) {
-        board.innerHTML += '<div class="user"><div>' + getBeaconTitleFromURL(beacon['http://www.bit.ly/mozfstn31']) + '</div><div>' + beacon['44'] + ' visits</div></div>';
+        board.innerHTML += '<div class="user"><div>' + getBeaconTitleFromURL(beacon[k2]) + '</div><div>' + beacon[k1] + ' visits</div></div>';
       });
     }
 
