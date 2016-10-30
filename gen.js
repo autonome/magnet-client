@@ -1,4 +1,6 @@
 
+var fs = require('fs'),
+    Tabletop = require('tabletop');
 
 var spaceImages = {
   'default': 'https://i.imgur.com/jFy7vOF.png',
@@ -15,18 +17,13 @@ var spaceImages = {
   //'': 'spaces-images/MozFest_Toilets.png',
 };
 
-var tags = {
-  'title': 3,
-  'url': 5,
-  'imageURL': 'https:i.imgur.com/jFy7vOF.png',
-  'detailURL': 4
-};
 
+var sheetKey = '11Q_SRMIlZdW8Ky1RdVVDY9ifg5xg-eolsE-DMm8ZW2M';
+Tabletop.init({ key: sheetKey, callback: onData, simpleSheet: false });
 
-var fs = require('fs');
-var tpl = fs.readFileSync('beacon-template.html', 'utf8');
-
-//console.log(file);
+function onData(data, tabletop) {
+  doItAll(data.Beacons.elements);
+}
 
 //  "1","Youth","2","HTC Vive tilt brush; Minecraft for Artists","https://app.mozillafestival.org/#_session-35","https://autonome.github.io/mozfestation/beacon1.html",
 
@@ -133,22 +130,27 @@ var data = [
   ["100","MozEx","","Some of My Favourite Songs","","https://autonome.github.io/mozfestation/beacon100.html"]
 ]
 
-data.forEach(function(row) {
-  var tmpl = tpl;
-  tmpl = tmpl.replace(/\{title\}/g, row[3]);
-  tmpl = tmpl.replace(/\{url\}/g, row[5]);
-  tmpl = tmpl.replace(/\{detailURL\}/g, row[4]);
-  tmpl = tmpl.replace(/\{description\}/g, 'asfd');
-  tmpl = tmpl.replace(/\{headerImageURL\}/g, 'images/detail_header_image.png');
+function doItAll(data) {
+  // read template into string
+  var tpl = fs.readFileSync('beacon-template.html', 'utf8');
 
-  if (spaceImages[ row[1] ])
-    tmpl = tmpl.replace(/\{imageURL\}/g, spaceImages[ row[1] ]);
-  else
-    tmpl = tmpl.replace(/\{imageURL\}/g, 'http://i.imgur.com/jFy7vOF.png');
+  data.forEach(function(item) {
+    var tmpl = tpl;
+    tmpl = tmpl.replace(/\{title\}/g, item.Title);
+    tmpl = tmpl.replace(/\{url\}/g, item['Beacon URL']);
+    tmpl = tmpl.replace(/\{detailURL\}/g, item['Original URL']);
+    tmpl = tmpl.replace(/\{description\}/g, item.Description);
+    tmpl = tmpl.replace(/\{headerImageURL\}/g, 'images/detail_header_image.png');
 
-  write('beacon' + row[0] + '.html', tmpl);
-  console.log('wrote', row[0]);
-});
+    if (spaceImages[ item.Zone ])
+      tmpl = tmpl.replace(/\{imageURL\}/g, spaceImages[ item.Zone ]);
+    else
+      tmpl = tmpl.replace(/\{imageURL\}/g, 'http://i.imgur.com/jFy7vOF.png');
+
+    write('beacon' + item.ID + '.html', tmpl);
+    console.log('wrote', item.ID, item.Title);
+  });
+}
 
 function write(filename, str) {
 	fs.writeFile(filename, str, function(err) {

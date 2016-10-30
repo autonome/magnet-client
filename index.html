@@ -4,8 +4,9 @@
 <head>
   <meta charset="utf-8">
 
-  <title>Mozfest 2016 - {title}</title>
+  <title>Mozfestation</title>
   <meta name="description" content="Mozfest 2016 - {description}">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
 
   <!-- Schema.org markup (Google) -->
   <meta itemprop="name" content="Mozfest 2016 - {title}">
@@ -30,30 +31,62 @@
   <meta property="og:description" content="{description}" />
   <meta property="og:site_name" content="Mozfestation" />
 
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+
+  <script>
+    // automatically forward mobile browsers to their respective app stores for now
+    var ua = navigator.userAgent.toLowerCase(),
+        androidURL = 'https://play.google.com/store/apps/details?id=com.metafluff.mozfestation&hl=en',
+        iosURL = 'https://itunes.apple.com/us/app/mozfestation/id1160000204?ls=1&mt=8';
+
+    if (ua.toLowerCase().indexOf('android') > -1) {
+      window.location.href = androidURL;
+    }
+    if (ua.toLowerCase().indexOf("iphone") > -1 || ua.indexOf("iPod") > -1 || ua.indexOf("iPad") > -1) {
+      window.location.href = iosURL;
+    }
+  </script>
+
+  <script type="text/javascript" src="tabletop.js"></script>
+
   <style>
+    html, body {
+      height: 100%;
+    }
     body {
       font-family: Helvetica, Arial, sans-serif;
       margin: 0;
       background-color: #dfe336;
       color: #264F12;
       font-size: 18px;
-      text-align: left;
       margin-bottom: 1em;
     }
-    div.header {
+    .header {
       background-color: #333;
       text-align: center;
     }
-    img.header {
+    .container {
+      display: flex;
+      flex-direction: column;
+      /* for vertical centering */
+      /*align-items: center;*/
+      /*justify-content: center;*/
+      height: 100%;
+    }
+    .headerImage {
       max-width: 80%;
       padding: .5em .5em .1em .5em;
     }
-    img {
-      max-width: 100%;
+    .content{
+      display: flex;
     }
     h1 {
       font-size: 18px;
       margin: 1em 1.5em 1em 1.5em;
+    }
+    h2 {
     }
     h4 {
       font-size: 18px;
@@ -75,46 +108,120 @@
     a {
       color: #f26522;
     }
+
+    .appBadges {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .appBadges a {
+      margin: 0;
+      padding: 0;
+    }
+    .appBadges img {
+			height: 61px;
+		}
+    .appBadges .ios {
+      margin-left: 10px;
+    }
+
+    .leaderboards {
+      color: #fff;
+      background-color: #2C4E1D;
+      display: flex;
+      padding: 10px;
+    }
+    .users {
+      width: 300px;
+      margin: 10px;
+    }
+    .beacons {
+      width: 300px;
+      margin: 10px;
+    }
+    .user {
+      padding: 6px;
+      display: flex;
+      position: relative;
+    }
+    .user > div:nth-child(1) {
+    }
+    .user > div:nth-child(2) {
+      position: absolute;
+      right: 0px;
+    }
+    .floormap {
+      width: 100%;
+    }
+    .floormap img {
+      margin-top: 40px;
+    }
   </style>
 
-  <!--[if lt IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
-  <![endif]-->
 </head>
 
 <body>
-<script>
-
-  var ua = navigator.userAgent.toLowerCase(),
-      androidURL = 'https://play.google.com/store/apps/details?id=com.metafluff.mozfestation&hl=en',
-      iosURL = 'https://itunes.apple.com/us/app/mozfestation/id1160000204?ls=1&mt=8';
-
-  if (ua.toLowerCase().indexOf('android') > -1) {
-    window.location.href = androidURL;
-  }
-  if (ua.toLowerCase().indexOf("iphone") > -1 || ua.indexOf("iPod") > -1 || ua.indexOf("iPad") > -1) {
-    window.location.href = iosURL;
-  }
-
-</script>
 
 <div class="header">
-  <img class="header" src="images/detail_header_image.png">
+  <img class="headerImage" src="images/detail_header_image.png">
 </div>
 
-<h1>GET INFECTED... BY IDEAS!</h1>
+  <div class="appBadges">
+    <a class="android" href='https://play.google.com/store/apps/details?id=com.metafluff.mozfestation&hl=en&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+      <img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/>
+    </a>
+    <a class="ios" href="https://itunes.apple.com/us/app/mozfestation/id1160000204?mt=8"
+       style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/images/badges/en-us/badge_appstore-lrg.svg) no-repeat;width:165px;height:40px;"></a>
+  </div>
 
-<p>
-  <a href='https://play.google.com/store/apps/details?id=com.metafluff.mozfestation&hl=en&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
-</p>
 
-<p>
-  <a href="https://itunes.apple.com/us/app/mozfestation/id1160000204?mt=8" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/images/badges/en-us/badge_appstore-lrg.svg) no-repeat;width:165px;height:40px;"></a>
-</p>
 
-<!--
-<p class="additional"><a href="{detailURL}">Read more</a></p>
--->
+<div class="container">
+  <div class="content">
+    <div class="floormap">
+      <img src="images/floormap.png">
+    </div>
+    <div class="leaderboards">
+      <div class="users">
+        <h4>INFECTED PEOPLE</h4>
+      </div>
+      <div class="beacons">
+        <h4>INFECTED PLACES</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var sheetKey = '11Q_SRMIlZdW8Ky1RdVVDY9ifg5xg-eolsE-DMm8ZW2M';
+
+  document.addEventListener('DOMContentLoaded', function() {
+		Tabletop.init({ key: sheetKey, callback: onData, simpleSheet: false });
+	});
+
+	function onData(data, tabletop) {
+		console.log(data);
+    buildUserLeaderboard(data.UserLeaderboard.elements);
+    buildBeaconLeaderboard(data.BeaconLeaderboard.elements);
+  }
+
+  function buildUserLeaderboard(data) {
+    var board = document.querySelector('.users');
+    data.forEach(function(user) {
+      board.innerHTML += '<div class="user"><div>User: ' + user['sduxsdtp7'] + '</div><div>' + user['96'] + '/100</div></div>';
+    });
+  }
+
+  function buildBeaconLeaderboard(data) {
+    var board = document.querySelector('.beacons');
+    data.forEach(function(beacon) {
+      board.innerHTML += '<div class="user"><div>' + beacon['http://www.bit.ly/mozfstn31'] + '</div><div>' + beacon['44'] + ' visits</div></div>';
+    });
+  }
+</script>
 
 </body>
 </html>
