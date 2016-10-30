@@ -61,11 +61,12 @@
       background-color: #dfe336;
       color: #264F12;
       font-size: 18px;
-      margin-bottom: 1em;
     }
     .header {
       background-color: #333;
       text-align: center;
+      margin: 0;
+      width: 100%;
     }
     .container {
       display: flex;
@@ -132,15 +133,16 @@
       color: #fff;
       background-color: #2C4E1D;
       display: flex;
-      padding: 10px;
+      min-width: 48%;
+      height: 100%;
     }
     .users {
-      width: 300px;
-      margin: 10px;
+      min-width: 45%;
+      padding: 10px;
     }
     .beacons {
-      width: 300px;
-      margin: 10px;
+      min-width: 45%;
+      padding: 10px;
     }
     .user {
       padding: 6px;
@@ -203,23 +205,34 @@
 	});
 
 	function onData(data, tabletop) {
-		console.log(data);
+
+    var beacons = data.Beacons.elements;
+
+    function getBeaconTitleFromURL(url) {
+      var id = url.substring(url.indexOf('mozfstn') + 7);
+      var b = beacons.find(function(b) {
+        return b.ID == id;
+      });
+      return b ? b.Title : '';
+    }
+
     buildUserLeaderboard(data.UserLeaderboard.elements);
     buildBeaconLeaderboard(data.BeaconLeaderboard.elements);
-  }
 
-  function buildUserLeaderboard(data) {
-    var board = document.querySelector('.users');
-    data.forEach(function(user) {
-      board.innerHTML += '<div class="user"><div>User: ' + user['sduxsdtp7'] + '</div><div>' + user['96'] + '/100</div></div>';
-    });
-  }
+    function buildUserLeaderboard(data) {
+      var board = document.querySelector('.users');
+      data.forEach(function(user) {
+        board.innerHTML += '<div class="user"><div>User ' + user['sduxsdtp7'] + '</div><div>' + user['96'] + '/100</div></div>';
+      });
+    }
 
-  function buildBeaconLeaderboard(data) {
-    var board = document.querySelector('.beacons');
-    data.forEach(function(beacon) {
-      board.innerHTML += '<div class="user"><div>' + beacon['http://www.bit.ly/mozfstn31'] + '</div><div>' + beacon['44'] + ' visits</div></div>';
-    });
+    function buildBeaconLeaderboard(data) {
+      var board = document.querySelector('.beacons');
+      data.forEach(function(beacon) {
+        board.innerHTML += '<div class="user"><div>' + getBeaconTitleFromURL(beacon['http://www.bit.ly/mozfstn31']) + '</div><div>' + beacon['44'] + ' visits</div></div>';
+      });
+    }
+
   }
 </script>
 
