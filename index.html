@@ -221,8 +221,11 @@
 
     function buildUserLeaderboard(data) {
       var board = document.querySelector('.users');
+      var keys = Object.keys(data[0]);
+      var k1 = keys[0];
+      var k2 = keys[1];
       data.forEach(function(user) {
-        board.innerHTML += '<div class="user"><div>User ' + user['sduxsdtp7'] + '</div><div>' + user['96'] + '/100</div></div>';
+        board.innerHTML += '<div class="user"><div>User ' + user[k2] + '</div><div>' + user[k1] + '/100</div></div>';
       });
     }
 
